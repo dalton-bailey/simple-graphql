@@ -1,0 +1,30 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+// datasource db {
+//   provider = "sqlite"
+//   url      = "file:./dev.db"
+// }
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Holiday {
+  id    Int     @id @default(autoincrement())
+  name  String  @unique
+  date String
+  description String?
+  region String?
+}
+
+model Region {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name  String
+  // holiday    Holiday?    @relation(fields: [holidayId], references: [id])
+  holidayId  Int?
+}
