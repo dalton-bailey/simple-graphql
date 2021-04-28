@@ -14,17 +14,18 @@ datasource db {
 
 model Holiday {
   id    Int     @id @default(autoincrement())
-  name  String  @unique
-  date String
+  name  String  
+  date String?
+  month String
   description String?
   region String?
 }
 
-model Region {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  name  String
-  // holiday    Holiday?    @relation(fields: [holidayId], references: [id])
-  holidayId  Int?
-}
+// model Region {
+//   id        Int      @id @default(autoincrement())
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   name  String
+//   // holiday    Holiday?    @relation(fields: [holidayId], references: [id])
+//   holidayId  Int?
+// }

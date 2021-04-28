@@ -8,9 +8,10 @@ A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `dat
 scalar DateTime
 
 type Holiday {
-  date: String!
+  date: String
   description: String
   id: Int!
+  month: String!
   name: String!
   region: String
 }
@@ -18,28 +19,19 @@ type Holiday {
 input HolidayCreateInput {
   date: String
   description: String
+  month: String!
   name: String!
-  regions: [RegionCreateInput!]
+  region: String
 }
 
 type Mutation {
   createHoliday(data: HolidayCreateInput!): Holiday!
   deleteHoliday(id: Int!): Holiday
+  updateHoliday(data: HolidayCreateInput!, id: Int!): Holiday
 }
 
 type Query {
   allHolidays: [Holiday!]!
   holidayById(id: Int): Holiday
-}
-
-type Region {
-  createdAt: DateTime!
-  id: Int!
-  name: String!
-  updatedAt: DateTime!
-}
-
-input RegionCreateInput {
-  content: String
-  title: String!
+  holidayByMonth(month: String): [Holiday]
 }
